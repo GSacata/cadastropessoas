@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import nexum.cadastropessoas.controllers.PeopleControllers;
+import nexum.cadastropessoas.dao.CountriesDAO;
 
 @Configuration
 public class PeopleConfigs {
@@ -12,4 +13,9 @@ public class PeopleConfigs {
     PeopleControllers peopleControllers() {
         return new PeopleControllers();
     }
+
+    // @Bean
+    // CountriesDAO countriesDAO() {
+    //     return new CountriesDAO();
+    // }
 }

@@ -34,3 +34,6 @@ build/
 
 # Files
 people.mv.db
+
+# Folders
+src/resources/data/
