@@ -108,12 +108,16 @@ public class PeopleUtils {
         }
     }
 
-    public static void NameValidator() {
-        // TODO implement validator
-    }
-
-    public static void EmailValidator() {
-        // TODO implement validator
+    public static Boolean EmailValidator(String email) {
+        Pattern pat1 = Pattern.compile("\\p{Space}");
+        Pattern pat2 = Pattern.compile("[@]+");
+        Matcher mat1 = pat1.matcher(email);
+        Matcher mat2 = pat2.matcher(email);
+        if (!mat1.find() && mat2.find()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static String onlyDigits(String document) {
