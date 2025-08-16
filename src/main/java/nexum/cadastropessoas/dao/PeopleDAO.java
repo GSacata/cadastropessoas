@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import nexum.cadastropessoas.domain.People;
 import nexum.cadastropessoas.interfaces.PeopleInterfaces;
+import nexum.cadastropessoas.utils.PeopleUtils;
 
 public class PeopleDAO {
 
@@ -29,13 +30,43 @@ public class PeopleDAO {
             String pPhone = body.getPhone();
             String pEmail = body.getEmail();
 
-            People person = new People(pName, pDoc);
-            
-            if (Objects.nonNull(pPhone)) {
-                person.setPhone(pPhone);
+            Boolean validDoc = false;
+
+            String cleanDoc = PeopleUtils.onlyDigits(pDoc);
+            if (cleanDoc.length() == 11) {
+                validDoc = PeopleUtils.CPFValidator(pDoc);
+            } else if (cleanDoc.length() == 14) {
+                validDoc = PeopleUtils.CNPJValidator(pDoc);
+            } else {
+                throw new IllegalArgumentException("Invalid length for document");
             }
-            if (Objects.nonNull(pEmail)) {
-                person.setEmail(pEmail);
+
+            People person = new People();
+            person.setName(pName);
+
+            if (validDoc) {
+                person.setDocument(pDoc);;
+            } else {
+                throw new IllegalArgumentException("Invalid document");
+            }
+            
+            if (Objects.nonNull(pPhone) && pPhone.length() > 0) {
+                Boolean validPhone = PeopleUtils.PhoneValidator(pPhone);
+                if (validPhone) {
+                    person.setPhone(pPhone);
+                } else {
+                    throw new IllegalArgumentException("Invalid phone number");
+                }
+            }
+
+            if (Objects.nonNull(pEmail) && pEmail.length() > 0) {
+                Boolean validEmail = PeopleUtils.EmailValidator(pEmail);
+
+                if (validEmail) {
+                    person.setEmail(pEmail);
+                } else {
+                    throw new IllegalArgumentException("Invalid email address");
+                }
             }
             
             Instant now = Instant.now();
@@ -50,9 +81,48 @@ public class PeopleDAO {
             People toUpdate = peopleInterfaces.findById(uuid).get();
 
             toUpdate.setName(body.getName());
-            toUpdate.setDocument(body.getDocument());
-            toUpdate.setEmail(body.getEmail());
-            toUpdate.setPhone(body.getPhone());
+
+            String pDoc = body.getDocument();
+            if (pDoc.length() > 0) {
+                Boolean validDoc = false;
+                
+                String cleanDoc = PeopleUtils.onlyDigits(pDoc);
+                if (cleanDoc.length() == 11) {
+                    validDoc = PeopleUtils.CPFValidator(pDoc);
+                } else if (cleanDoc.length() == 14) {
+                    validDoc = PeopleUtils.CNPJValidator(pDoc);
+                } else {
+                    throw new IllegalArgumentException("Invalid length for document");
+                }
+
+                if (validDoc) {
+                    toUpdate.setDocument(pDoc);;
+                } else {
+                    throw new IllegalArgumentException("Invalid document");
+                }
+            }
+
+            String pPhone = body.getPhone();
+            if (Objects.nonNull(pPhone) && pPhone.length() > 0) {
+                Boolean validPhone = PeopleUtils.PhoneValidator(pPhone);
+                if (validPhone) {
+                    toUpdate.setPhone(pPhone);
+                } else {
+                    throw new IllegalArgumentException("Invalid phone number");
+                }
+            }
+
+            String pEmail = body.getEmail();
+            if (Objects.nonNull(pEmail) && pEmail.length() > 0) {
+                Boolean validEmail = PeopleUtils.EmailValidator(pEmail);
+
+                if (validEmail) {
+                    toUpdate.setEmail(pEmail);
+                } else {
+                    throw new IllegalArgumentException("Invalid email address");
+                }
+            }
+
             toUpdate.setLastUpdated(Instant.now());
 
             peopleInterfaces.save(toUpdate);
