@@ -95,7 +95,6 @@ public class PeopleUtils {
         // Currently only validates phone numbers following brazillian standards
         // 333, 0 800 222 5151, 55 14 0000-1111, 55 14 99999-8888, 055 14 96666-4444
         String cleanPhone = PeopleUtils.onlyDigits(phone);
-        System.out.println(cleanPhone);
 
         if (cleanPhone.length() == 3) {
             return true;
