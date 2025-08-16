@@ -79,5 +79,7 @@ public class People {
         this.name = name;
         this.document = document;
     }
+
+    public People() {}  // Default constructor, needed for H2 database
     
 }
