@@ -91,8 +91,21 @@ public class PeopleUtils {
         }
     }
 
-    public static void PhoneValidator() {
-        // TODO implement validator
+    public static Boolean PhoneValidator(String phone) {
+        // Currently only validates phone numbers following brazillian standards
+        // 333, 0 800 222 5151, 55 14 0000-1111, 55 14 99999-8888, 055 14 96666-4444
+        String cleanPhone = PeopleUtils.onlyDigits(phone);
+        System.out.println(cleanPhone);
+
+        if (cleanPhone.length() == 3) {
+            return true;
+        }
+        else if (cleanPhone.length() >= 11 && cleanPhone.length() <= 14) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public static void NameValidator() {
