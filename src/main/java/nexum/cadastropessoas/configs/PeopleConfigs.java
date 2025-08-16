@@ -3,15 +3,14 @@ package nexum.cadastropessoas.configs;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import nexum.cadastropessoas.controllers.PeopleControllers;
-import nexum.cadastropessoas.dao.CountriesDAO;
+import nexum.cadastropessoas.dao.PeopleDAO;
 
 @Configuration
 public class PeopleConfigs {
 
     @Bean
-    PeopleControllers peopleControllers() {
-        return new PeopleControllers();
+    PeopleDAO peopleDAO() {
+        return new PeopleDAO();
     }
 
     // @Bean
