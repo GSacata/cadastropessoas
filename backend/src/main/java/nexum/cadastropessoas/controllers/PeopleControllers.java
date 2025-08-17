@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/api")
 public class PeopleControllers {
 
     // @Autowired public CountriesDAO countriesDAO;
