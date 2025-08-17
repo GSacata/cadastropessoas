@@ -1,9 +1,14 @@
 <template>
     <!-- <p>I am the {{ fileName }} template.</p> -->
     <p>Nome da aplicação: {{ appName }}</p>
-    <ol v-for="person of people">
-        <li>{{ person.uuid }} | {{ person.name }} | {{ person.document }} | {{ person.email }} | {{ person.phone }}</li>
-    </ol>
+    <table v-for="person of people" :key="person.uuid">
+        <tr>
+            <td @click="">Ed</td>
+            <td @click="">Del</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.document }}</td>
+        </tr>
+    </table>
     <p v-if="(error)">{{ error }}</p>
 </template>
 
