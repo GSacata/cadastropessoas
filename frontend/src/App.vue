@@ -1,11 +1,16 @@
-<script setup></script>
+<script setup>
+import Registry from './components/Registry.vue';
+import PeopleList from './components/PeopleList.vue';
+import PeopleDetail from './components/PeopleDetail.vue';
+import DelConfirmation from './components/DelConfirmation.vue';
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <h1>Cadastro de Pessoas - Nexum</h1>
+  <registry />
+  <people-detail />
+  <people-list />
+  <del-confirmation />
 </template>
 
 <style scoped></style>
