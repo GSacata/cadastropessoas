@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/api")
 public class PeopleControllers {
 
     // @Autowired public CountriesDAO countriesDAO;
@@ -48,7 +48,7 @@ public class PeopleControllers {
         return peopleDAO.editPerson(uuid, body);
     }
 
-    @DeleteMapping("/{uuid}")
+    @DeleteMapping("/{uuid}/delete")
     public void deletePerson(@PathVariable UUID uuid) {
         peopleDAO.deletePerson(uuid);
     }
