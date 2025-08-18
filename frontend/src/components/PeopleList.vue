@@ -1,19 +1,17 @@
 <template>
-    <!-- <p>I am the {{ fileName }} template.</p> -->
     <p>Nome da aplicação: {{ appName }}</p>
     <p><router-link to="/registry">Nova pessoa</router-link></p>
     <table v-for="person of people" :key="person.uuid">
         <tbody>
             <tr>
-                <!-- <td><router-link to="/registry/{{:person.uuid}}">Ed.</router-link></td> -->
                 <td @click="toRegister(person.uuid)">Ed.</td>
-                <td @click="">Del</td>
+                <td @click="deleteRegistry(person.uuid)">Del</td>
                 <td>{{ person.name }}</td>
                 <td>{{ person.document }}</td>
             </tr>
         </tbody>
     </table>
-    <p v-if="(error)">{{ error }}</p>
+    <!-- <p v-if="(error)">{{ error }}</p> -->
 </template>
 
 <script>
@@ -36,21 +34,32 @@ export default {
     },
     created() {
         this.getAllPeople();
-        console.log(this.$route.fullPath)
     },
     methods: {
         getAllPeople() {
             axios.get(this.endpoint)
             .then((data) => {
-                console.log(data)
                 this.people = data.data;
             })
             .catch((err) => {
                 this.error = err;
             })
         },
+        refreshPeople() {
+            this.getAllPeople()
+        },
         toRegister(uuid) {
             this.$router.push('registry/' + uuid)
+        },
+        deleteRegistry(uuid) {
+            const url = `http://localhost:8080/api/${uuid}/delete`
+            axios.delete(url)
+            .then(() => {
+                this.refreshPeople()
+            })
+            .catch((err) => {
+                this.error = err;
+            })
         }
     }
 }
