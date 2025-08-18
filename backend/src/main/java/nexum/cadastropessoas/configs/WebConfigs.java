@@ -16,7 +16,9 @@ public class WebConfigs {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowCredentials(true);
         corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:5173/"));
-        // corsConfig.setAllowedHeaders(Arrays.asList("Authorization"));
+        corsConfig.setAllowedHeaders(Arrays.asList(
+            "Authorization", "Cache-Control", "Content-Type", "X-Requested-With", "Accept", "Origin"
+        ));
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
 
         UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
