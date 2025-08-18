@@ -1,13 +1,17 @@
 <template>
     <!-- <p>I am the {{ fileName }} template.</p> -->
     <p>Nome da aplicação: {{ appName }}</p>
+    <p><router-link to="/registry">Nova pessoa</router-link></p>
     <table v-for="person of people" :key="person.uuid">
-        <tr>
-            <td @click="">Ed</td>
-            <td @click="">Del</td>
-            <td>{{ person.name }}</td>
-            <td>{{ person.document }}</td>
-        </tr>
+        <tbody>
+            <tr>
+                <!-- <td><router-link to="/registry/{{:person.uuid}}">Ed.</router-link></td> -->
+                <td @click="toRegister(person.uuid)">Ed.</td>
+                <td @click="">Del</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.document }}</td>
+            </tr>
+        </tbody>
     </table>
     <p v-if="(error)">{{ error }}</p>
 </template>
@@ -32,10 +36,10 @@ export default {
     },
     created() {
         this.getAllPeople();
+        console.log(this.$route.fullPath)
     },
     methods: {
         getAllPeople() {
-            console.log("Chamou getAllPeople")
             axios.get(this.endpoint)
             .then((data) => {
                 console.log(data)
@@ -44,6 +48,9 @@ export default {
             .catch((err) => {
                 this.error = err;
             })
+        },
+        toRegister(uuid) {
+            this.$router.push('registry/' + uuid)
         }
     }
 }
