@@ -5,9 +5,13 @@
         <tbody>
             <tr>
                 <td @click="toRegister(person.uuid)">Ed.</td>
-                <td @click="deleteRegistry(person.uuid)">Del</td>
+                <td @click="confirmDel(person)">Del</td>
                 <td>{{ person.name }}</td>
                 <td>{{ person.document }}</td>
+            </tr>
+            <tr>
+                <button type="button" class="btn" @click="showModal">Modal</button>
+                <DelModal v-show="isModalVisible" @close="closeModal"></DelModal>
             </tr>
         </tbody>
     </table>
@@ -16,14 +20,19 @@
 
 <script>
 import axios from 'axios';
+import DelModal from './DelModal.vue';
 
 export default {
     name: "people-list",
+    components: {
+        DelModal
+    },
     data() {
         return {
             people: [],
             appName: "",
-            errorText: ""
+            errorText: "",
+            isModalVisible: false,
         }
     },
     setup() {
@@ -51,15 +60,11 @@ export default {
         toRegister(uuid) {
             this.$router.push('registry/' + uuid)
         },
-        deleteRegistry(uuid) {
-            const url = `http://localhost:8080/api/${uuid}/delete`
-            axios.delete(url)
-            .then(() => {
-                this.refreshPeople()
-            })
-            .catch((err) => {
-                this.error = err;
-            })
+        showModal() {
+            this.isModalVisible = true;
+        },
+        closeModal() {
+            this.isModalVisible = false;
         }
     }
 }
