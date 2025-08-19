@@ -6,17 +6,26 @@
     <input type="text" placeholder="seu@email.com" name="email" id="reg-email">
     <button><router-link to="/">Voltar</router-link></button>
     <button @click="saveRegistry()">Salvar</button>
+    <button v-show="isEdit" @click="showModal(this.$route.params.uuid)">Deletar</button>
+    <DelModal v-show="isModalVisible" @close="hideModal" @delReg="deleteRegistry(toDeleteUuid)"></DelModal>
 </template>
 
 <script>
 import axios from 'axios'
+import DelModal from './DelModal.vue';
 
 export default {
     name: "Registry",
+    components: {
+        DelModal
+    },
     data() {
         return {
             person: [],
-            err: ""
+            err: "",
+            isModalVisible: false,
+            isEdit: false,
+            toDeleteUuid: ""
         }
     },
     created() {
@@ -33,6 +42,7 @@ export default {
                     document.getElementById("reg-doc").value = this.person.document
                     document.getElementById("reg-phone").value = this.person.phone
                     document.getElementById("reg-email").value = this.person.email
+                    this.isEdit = true
                 })
                 .catch((err) => {
                     this.err = err
@@ -77,6 +87,31 @@ export default {
                 })
 
             }
+        },
+        showModal(uuid) {
+            this.isModalVisible = true;
+            this.toDeleteUuid = uuid
+        },
+        hideModal() {
+            this.isModalVisible = false;
+        },
+        deleteRegistry(uuid) {
+            const url = `http://localhost:8080/api/${uuid}/delete`
+            axios.delete(url)
+            .then(() => {
+                this.refreshPeople()
+            })
+            .catch((err) => {
+                this.error = err;
+            })
+            // this.isModalVisible = false;
+            this.$router.push("/")
+            .then(() => {
+                window.location.reload()
+            })
+            .catch((err) => {
+                this.err = err
+            })
         }
     }
 }
