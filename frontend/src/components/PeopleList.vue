@@ -5,16 +5,13 @@
         <tbody>
             <tr>
                 <td @click="toRegister(person.uuid)">Ed.</td>
-                <td @click="confirmDel(person)">Del</td>
+                <td @click="showModal(person.uuid)">Del</td>
                 <td>{{ person.name }}</td>
                 <td>{{ person.document }}</td>
             </tr>
-            <tr>
-                <button type="button" class="btn" @click="showModal">Modal</button>
-                <DelModal v-show="isModalVisible" @close="closeModal"></DelModal>
-            </tr>
         </tbody>
     </table>
+    <DelModal v-show="isModalVisible" @close="hideModal" @delReg="deleteRegistry(toDeleteUuid)"></DelModal>
     <!-- <p v-if="(error)">{{ error }}</p> -->
 </template>
 
@@ -33,6 +30,7 @@ export default {
             appName: "",
             errorText: "",
             isModalVisible: false,
+            toDeleteUuid: ""
         }
     },
     setup() {
@@ -60,10 +58,22 @@ export default {
         toRegister(uuid) {
             this.$router.push('registry/' + uuid)
         },
-        showModal() {
+        showModal(uuid) {
             this.isModalVisible = true;
+            this.toDeleteUuid = uuid
         },
-        closeModal() {
+        hideModal() {
+            this.isModalVisible = false;
+        },
+        deleteRegistry(uuid) {
+            const url = `http://localhost:8080/api/${uuid}/delete`
+            axios.delete(url)
+            .then(() => {
+                this.refreshPeople()
+            })
+            .catch((err) => {
+                this.error = err;
+            })
             this.isModalVisible = false;
         }
     }

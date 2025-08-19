@@ -1,7 +1,8 @@
 <template>
     <div>
-        <p>modal de deleção</p>
+        <p>Deseja apagar este registro?</p>
         <button type="button" class="btn-close" @click="close">Fechar</button>
+        <button type="button" class="btn-close" @click="delReg">Deletar</button>
     </div>
 </template>
 
@@ -11,6 +12,9 @@ export default {
     methods: {
         close() {
             this.$emit('close')
+        },
+        delReg() {
+            this.$emit('delReg')
         }
     }
 }
