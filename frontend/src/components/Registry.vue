@@ -4,6 +4,7 @@
     <input type="text" placeholder="000.000.000-00" name="document" id="reg-doc">
     <input type="text" placeholder="(00) 0000-0000" name="phone" id="reg-phone">
     <input type="text" placeholder="seu@email.com" name="email" id="reg-email">
+    <p>Última atualização: <span id="reg-lastup"></span></p>
     <button><router-link to="/">Voltar</router-link></button>
     <button @click="saveRegistry()">Salvar</button>
     <button v-show="isEdit" @click="showModal(this.$route.params.uuid)">Deletar</button>
@@ -42,6 +43,7 @@ export default {
                     document.getElementById("reg-doc").value = this.person.document
                     document.getElementById("reg-phone").value = this.person.phone
                     document.getElementById("reg-email").value = this.person.email
+                    document.getElementById("reg-lastup").innerHTML = this.person.lastUpdated
                     this.isEdit = true
                 })
                 .catch((err) => {

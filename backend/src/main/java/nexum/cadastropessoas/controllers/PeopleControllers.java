@@ -7,9 +7,11 @@ import nexum.cadastropessoas.dao.CountriesDAO;
 import nexum.cadastropessoas.dao.PeopleDAO;
 // import nexum.cadastropessoas.domain.Countries;
 import nexum.cadastropessoas.domain.People;
+import nexum.cadastropessoas.dto.PeopleDTO;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,28 +31,47 @@ public class PeopleControllers {
     @Autowired public PeopleDAO peopleDAO;
 
     @GetMapping("")
-    public List<People> getAllPeople() {
-        return peopleDAO.getAllPeople();
+    public List<PeopleDTO> getAllPeople() {
+        List<People> peopleList = peopleDAO.getAllPeople();
+        
+        return peopleList.stream()
+        .map(this::convertToDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/{uuid}")
-    public People getPerson(@PathVariable UUID uuid) {
-        return peopleDAO.getPerson(uuid);
+    public PeopleDTO getPerson(@PathVariable UUID uuid) {
+        People person = peopleDAO.getPerson(uuid);
+        return this.convertToDTO(person);
     }
 
     @PostMapping("/create")
-    public People createPerson(@RequestBody People body) {
-        return peopleDAO.createPerson(body);
+    public PeopleDTO createPerson(@RequestBody People body) {
+        People person = peopleDAO.createPerson(body);
+        return this.convertToDTO(person);
     }
 
     @PutMapping("/{uuid}/edit")
-    public People editPerson(@PathVariable UUID uuid, @RequestBody People body) {
-        return peopleDAO.editPerson(uuid, body);
+    public PeopleDTO editPerson(@PathVariable UUID uuid, @RequestBody People body) {
+        People person = peopleDAO.editPerson(uuid, body);
+        return this.convertToDTO(person);
     }
 
     @DeleteMapping("/{uuid}/delete")
     public void deletePerson(@PathVariable UUID uuid) {
         peopleDAO.deletePerson(uuid);
+    }
+
+    private PeopleDTO convertToDTO(People person) {
+        PeopleDTO peopleDto = new PeopleDTO();
+        
+        peopleDto.setUuid(person.getUuid());
+        peopleDto.setName(person.getName());
+        peopleDto.setDocument(person.getDocument());
+        peopleDto.setEmail(person.getEmail());
+        peopleDto.setPhone(person.getPhone());
+        peopleDto.setLastUpdated(person.getLastUpdated());
+        
+        return peopleDto;
     }
     
 
