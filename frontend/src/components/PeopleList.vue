@@ -1,16 +1,22 @@
 <template>
-    <p>Nome da aplicação: {{ appName }}</p>
-    <p><router-link to="/registry">Nova pessoa</router-link></p>
-    <table v-for="person of people" :key="person.uuid">
-        <tbody>
-            <tr>
-                <td @click="toRegister(person.uuid)">Ed.</td>
-                <td @click="showModal(person.uuid)">Del</td>
-                <td>{{ person.name }}</td>
-                <td>{{ person.document }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div container="row">
+        <p>Nome da aplicação: {{ appName }}</p>
+    </div>
+    <div container="row">
+        <p><router-link to="/registry">Nova pessoa</router-link></p>
+    </div>
+    <div container="row">
+        <table v-for="person of people" :key="person.uuid">
+            <tbody class="container">
+                <tr class="row">
+                    <td @click="toRegister(person.uuid)" class="col-4">Ed.</td>
+                    <td @click="showModal(person.uuid)" class="col-4">Del</td>
+                    <td class="col-4">{{ person.name }}</td>
+                    <td class="col-4">{{ person.document }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <DelModal v-show="isModalVisible" @close="hideModal" @delReg="deleteRegistry(toDeleteUuid)"></DelModal>
     <!-- <p v-if="(error)">{{ error }}</p> -->
 </template>
