@@ -93,13 +93,13 @@ public class PeopleUtils {
 
     public static Boolean PhoneValidator(String phone) {
         // Currently only validates phone numbers following brazillian standards
-        // 333, 0 800 222 5151, 55 14 0000-1111, 55 14 99999-8888, 055 14 96666-4444
+        // 333, 0 800 222 5151, 2288-9944, 21 3399-9988, 55 14 0000-1111, 55 14 99999-8888, 055 14 96666-4444
         String cleanPhone = PeopleUtils.onlyDigits(phone);
 
         if (cleanPhone.length() == 3) {
             return true;
         }
-        else if (cleanPhone.length() >= 11 && cleanPhone.length() <= 14) {
+        else if (cleanPhone.length() >= 6 && cleanPhone.length() <= 14) {
             return true;
         }
         else {
