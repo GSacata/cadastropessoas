@@ -1,21 +1,22 @@
 <template>
     <div container="row">
-        <p>Nome da aplicação: {{ appName }}</p>
-    </div>
-    <div container="row">
-        <p><router-link to="/registry">Nova pessoa</router-link></p>
-    </div>
-    <div container="row">
-        <table v-for="person of people" :key="person.uuid">
+        <table class="w-100">
             <tbody class="container">
-                <tr class="row">
-                    <td @click="toRegister(person.uuid)" class="col-4">Ed.</td>
-                    <td @click="showModal(person.uuid)" class="col-4">Del</td>
-                    <td class="col-4">{{ person.name }}</td>
-                    <td class="col-4">{{ person.document }}</td>
+                <tr class="row" v-for="person of people" :key="person.uuid">
+                    <td class="col-1 text-center ed-del-cell">
+                        <span @click="toRegister(person.uuid)">Ed.</span>
+                        <span @click="showModal(person.uuid)">Del</span>
+                    </td>
+                    <td class="col-5 text-start">{{ person.name }}</td>
+                    <td class="col-2 text-end">{{ person.document }}</td>
+                    <td class="col-2 text-end">{{ person.email }}</td>
+                    <td class="col-2 text-end">{{ person.phone }}</td>
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div container="row">
+        <p class="text-center my-3 mx-auto p-1 btn-like-neutral w-75" @click="navToRegistry()">Nova pessoa</p>
     </div>
     <DelModal v-show="isModalVisible" @close="hideModal" @delReg="deleteRegistry(toDeleteUuid)"></DelModal>
     <!-- <p v-if="(error)">{{ error }}</p> -->
@@ -81,6 +82,9 @@ export default {
                 this.error = err;
             })
             this.isModalVisible = false;
+        },
+        navToRegistry() {
+            this.$router.push("/registry");
         }
     }
 }
