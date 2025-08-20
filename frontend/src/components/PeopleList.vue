@@ -16,7 +16,7 @@
         </table>
     </div>
     <div container="row">
-        <p class="text-center my-3 mx-auto p-1 btn-like-neutral w-75" @click="navToRegistry()">Nova pessoa</p>
+        <p class="text-center my-3 mx-auto p-1 btn-like btn-like-neutral w-75" @click="navToRegistry()">Nova pessoa</p>
     </div>
     <DelModal v-show="isModalVisible" @close="hideModal" @delReg="deleteRegistry(toDeleteUuid)"></DelModal>
     <!-- <p v-if="(error)">{{ error }}</p> -->

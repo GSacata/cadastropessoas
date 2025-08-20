@@ -10,6 +10,9 @@
   --color-primary: #1a66d9;
   --color-primary-lighter: #bed3f3;
   --color-primary-darker: #13499b;
+  --color-alert: #d9271a;
+  --color-alert-lighter: #ebaaa5;
+  --color-alert-darker: #86170f;
   --color-bg: #ffffff;
   --color-font: #101010;
   --color-font-alt: #ffffff;
@@ -36,11 +39,15 @@ table tbody tr td {
   border-right: solid 1px var(--color-primary);
 }
 
+.btn-like {
+  padding: 0.5rem;
+  color: var(--color-font-alt);
+  border-radius: 5px;
+}
+
 .btn-like-neutral {
-  padding: 2rem;
   color: var(--color-font-alt);
   background-color: var(--color-primary);
-  border-radius: 5px;
   box-shadow: 0px 5px 5px var(--color-primary-lighter);
 }
 
@@ -48,4 +55,39 @@ table tbody tr td {
   background-color: var(--color-primary-darker);
 }
 
+.btn-like-alert {
+  color: var(--color-font-alt);
+  background-color: var(--color-alert);
+  box-shadow: 0px 5px 5px var(--color-alert-lighter);
+}
+
+.btn-like-alert:hover {
+  background-color: var(--color-alert-darker);
+}
+
+.cmodal-outter {
+  background-color: rgba(0,0,0,0.2);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 4000px !important;
+}
+
+.cmodal-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  min-width: 600px;
+  margin: auto;
+  transform: translate(-50%, -50%);
+}
+
+.cmodal-del {
+  border-radius: 7px;
+  background-color: var(--color-bg);
+  max-width: 600px !important;
+
+}
 </style>
