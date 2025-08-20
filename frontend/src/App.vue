@@ -13,6 +13,9 @@
   --color-alert: #d9271a;
   --color-alert-lighter: #ebaaa5;
   --color-alert-darker: #86170f;
+  --color-confirm: #1ad980;
+  --color-confirm-lighter: #96e7c2;
+  --color-confirm-darker: #108f54;
   --color-bg: #ffffff;
   --color-font: #101010;
   --color-font-alt: #ffffff;
@@ -68,6 +71,16 @@ table tbody tr td {
 
 .btn-like-alert:hover {
   background-color: var(--color-alert-darker);
+}
+
+.btn-like-confirm {
+  color: var(--color-font-alt);
+  background-color: var(--color-confirm);
+  box-shadow: 0px 5px 5px var(--color-confirm-lighter);
+}
+
+.btn-like-confirm:hover {
+  background-color: var(--color-confirm-darker);
 }
 
 .cmodal-outter {
