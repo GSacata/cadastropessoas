@@ -43,13 +43,19 @@
                 <input type="text" placeholder="(00) 0000-0000" name="phone" class="col-4 reg-phone">
                 <input type="text" placeholder="seu@email.com" name="email" class="col-4 reg-email">
             </div>
-            <div class="row my-2 mx-2">
+            <div v-if="isEdit" class="row my-2 mx-2">
                 <div class="col-5 opacity-50">
-                    <small v-show="isEdit">Última atualização: <span class="reg-lastup"></span></small>
+                    <small >Última atualização: <span class="reg-lastup"></span></small>
                 </div>
                 <p class="col-2 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
                 <p class="col-2 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
                 <p v-show="isEdit" class="col-2 mx-auto text-center btn-like btn-like-alert" @click="showModal(this.$route.params.uuid)">Deletar</p>
+            </div>
+            <div v-else class="row my-2 mx-2">
+                <span class="col-3"></span>
+                <p class="col-2 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
+                <p class="col-2 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
+                <span class="col-3"></span>
             </div>
         </div>
     </div>
