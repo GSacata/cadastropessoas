@@ -4,7 +4,7 @@
 
             <!-- Small screen -->
             <div class="c-show-on-small" style="display: none;">
-                <table class="w-100">
+                <table class="table table-striped w-100">
                     <thead>
                         <tr class="row">
                             <th class="col-2 text-center">Ações</th>
@@ -31,7 +31,7 @@
 
             <!-- Medium screen -->
             <div class="c-show-on-medium" style="display: none;">
-                <table class="w-100">
+                <table class="table table-striped w-100">
                     <thead>
                         <tr class="row">
                             <th class="col-1 text-center">Ações</th>
@@ -60,7 +60,7 @@
 
             <!-- Large screen -->
             <div class="c-show-on-large" style="display: none;">
-                <table class="w-100">
+                <table class="table table-striped w-100">
                     <thead>
                         <tr class="row">
                             <th class="col-1 text-center">Ações</th>
