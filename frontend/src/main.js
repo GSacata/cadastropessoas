@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import { createMemoryHistory, createRouter } from 'vue-router'
+import 'bootstrap/dist/css/bootstrap.css'
 
 import PeopleList from './components/PeopleList.vue'
 import Registry from './components/Registry.vue'
