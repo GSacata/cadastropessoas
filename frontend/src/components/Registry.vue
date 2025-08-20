@@ -1,13 +1,26 @@
 <template>
-    <p>I am the Registry template.</p>
-    <input type="text" placeholder="Nome" name="name" id="reg-name">
-    <input type="text" placeholder="000.000.000-00" name="document" id="reg-doc">
-    <input type="text" placeholder="(00) 0000-0000" name="phone" id="reg-phone">
-    <input type="text" placeholder="seu@email.com" name="email" id="reg-email">
-    <p>Última atualização: <span id="reg-lastup"></span></p>
-    <button><router-link to="/">Voltar</router-link></button>
-    <button @click="saveRegistry()">Salvar</button>
-    <button v-show="isEdit" @click="showModal(this.$route.params.uuid)">Deletar</button>
+    <div class="container">
+        <div class="row my-2">
+            <label for="name" class="col-12 pl-0">Nome</label>
+            <input type="text" placeholder="Nome" name="name" id="reg-name" class="col-12">
+        </div>
+        <div class="row my-2">
+            <label for="document" class="col-4">Documento</label>
+            <label for="phone" class="col-4">Telefone</label>
+            <label for="email" class="col-4">E-Mail</label>
+            <input type="text" placeholder="000.000.000-00" name="document" id="reg-doc" class="col-4">
+            <input type="text" placeholder="(00) 0000-0000" name="phone" id="reg-phone" class="col-4">
+            <input type="text" placeholder="seu@email.com" name="email" id="reg-email" class="col-4">
+        </div>
+        <div class="row my-2">
+            <div class="col-5 opacity-50">
+                <small v-show="isEdit">Última atualização: <span id="reg-lastup"></span></small>
+            </div>
+            <p class="col-2 mx-1 text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
+            <p class="col-2 mx-1 text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
+            <p v-show="isEdit" class="col-2 mx-1 text-center btn-like btn-like-alert" @click="showModal(this.$route.params.uuid)">Deletar</p>
+        </div>
+    </div>
     <DelModal v-show="isModalVisible" @close="hideModal" @delReg="deleteRegistry(toDeleteUuid)"></DelModal>
 </template>
 
@@ -106,7 +119,6 @@ export default {
             .catch((err) => {
                 this.error = err;
             })
-            // this.isModalVisible = false;
             this.$router.push("/")
             .then(() => {
                 window.location.reload()
@@ -114,6 +126,9 @@ export default {
             .catch((err) => {
                 this.err = err
             })
+        },
+        navToList() {
+            this.$router.push("/")
         }
     }
 }
