@@ -5,11 +5,9 @@
                 <div class="row">
                     <p class="text-center">Deseja apagar este registro?</p>
                 </div>
-                <div class="row w-100">
-                    <span class="col-4"></span>
-                    <p class="col-2 mx-1 text-center btn-like btn-like-neutral" @click="close">Fechar</p>
-                    <p class="col-2 mx-1 text-center btn-like btn-like-alert" @click="delReg">Deletar</p>
-                    <span class="col-4"></span>
+                <div class="row">
+                    <p class="col-5 mx-2 text-center btn-like btn-like-neutral" @click="close">Fechar</p>
+                    <p class="col-5 mx-2 text-center btn-like btn-like-alert" @click="delReg">Deletar</p>
                 </div>
             </div>
         </div>
