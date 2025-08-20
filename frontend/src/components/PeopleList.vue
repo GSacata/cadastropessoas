@@ -1,6 +1,17 @@
 <template>
     <div container="row">
         <table class="w-100">
+            <thead>
+                <tr>
+                    <tr class="row">
+                    <td class="col-1 text-center">Ações</td>
+                    <td class="col-5 text-start">Nome</td>
+                    <td class="col-2 text-end">Documento</td>
+                    <td class="col-2 text-end">E-Mail</td>
+                    <td class="col-2 text-end">Telefone</td>
+                </tr>
+                </tr>
+            </thead>
             <tbody class="container">
                 <tr class="row" v-for="person of people" :key="person.uuid">
                     <td class="col-1 text-center ed-del-cell">

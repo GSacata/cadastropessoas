@@ -29,6 +29,11 @@ body {
   max-width: 1200px;
 }
 
+table thead tr td {
+  background-color: var(--color-primary-darker);
+  color: var(--color-font-alt);
+}
+
 table tbody tr td {
   border-bottom: solid 1px var(--color-primary);
   border-collapse: collapse;
