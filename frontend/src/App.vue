@@ -101,7 +101,6 @@ table tbody tr td {
   position: absolute;
   left: 50%;
   top: 50%;
-  min-width: 600px;
   margin: auto;
   transform: translate(-50%, -50%);
 }
@@ -109,7 +108,7 @@ table tbody tr td {
 .cmodal-del {
   border-radius: 7px;
   background-color: var(--color-bg);
-  max-width: 600px !important;
+  min-width: 250px !important;
 }
 
 .icon-container {
