@@ -29,18 +29,22 @@ body {
 #app {
   font-family: "Figtree", sans-serif;
   color: var(--color-font);
-  max-width: 1200px;
+  max-width: 1000px;
 }
 
 table thead tr td {
   background-color: var(--color-primary-darker);
   color: var(--color-font-alt);
+  overflow: hidden;
+  text-wrap: nowrap;
 }
 
 table tbody tr td {
   border-bottom: solid 1px var(--color-primary);
   border-collapse: collapse;
   background-color: var(--color-bg);
+  overflow: hidden;
+  text-wrap: nowrap;
 }
 
 .ed-del-cell {
@@ -97,7 +101,6 @@ table tbody tr td {
   position: absolute;
   left: 50%;
   top: 50%;
-  min-width: 600px;
   margin: auto;
   transform: translate(-50%, -50%);
 }
@@ -105,11 +108,29 @@ table tbody tr td {
 .cmodal-del {
   border-radius: 7px;
   background-color: var(--color-bg);
-  max-width: 600px !important;
+  min-width: 250px !important;
 }
 
 .icon-container {
   width: 25px;
   height: 25px;
+}
+
+@media screen and (min-width: 993px) {
+  .c-show-on-large {
+    display: block !important;
+  }
+}
+
+@media screen and (min-width: 767px) and  (max-width: 992px) {
+  .c-show-on-medium {
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .c-show-on-small {
+    display: block !important;
+  }
 }
 </style>
