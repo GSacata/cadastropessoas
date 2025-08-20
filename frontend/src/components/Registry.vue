@@ -6,7 +6,7 @@
             <div class="col my-2 mx-2">
                 <form>
                     <div class="form-group">
-                        <label for="name" class="col-12 form-label">Nome pequena</label>
+                        <label for="name" class="col-12 form-label">Nome</label>
                         <input type="text" placeholder="Nome" name="name" class="col-12 mb-2 form-control reg-name">
 
                         <label for="document" class="col-12 form-label">Documento</label>
@@ -37,7 +37,7 @@
             <form>
                 <div class="row my-2 mx-2 form-group">
                     <div class="col-12 p-0">
-                        <label for="name" class="col-12 form-label">Nome grande</label>
+                        <label for="name" class="col-12 form-label">Nome</label>
                         <input type="text" placeholder="Nome" name="name" class="col-12 form-control reg-name">
                     </div>
                 </div>
@@ -61,17 +61,17 @@
                         <input type="text" class="col-12 form-control reg-lastup" readonly>
                     </div>
                 </div>
-                <div class="row my-2 mx-2 form-group">
-                    <div v-if="isEdit" class="row my-2 mx-2">
+                <div class="my-4 container form-group">
+                    <div v-if="isEdit" class="row mx-2">
                         <p class="col-3 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
                         <p class="col-3 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
                         <p class="col-3 mx-auto text-center btn-like btn-like-alert" @click="showModal(this.$route.params.uuid)">Deletar</p>
                     </div>
-                    <div v-else class="row my-2 mx-2">
-                        <span class="col-3"></span>
-                        <p class="col-2 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
-                        <p class="col-2 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
-                        <span class="col-3"></span>
+                    <div v-else class="row mx-2">
+                        <span class="col-2"></span>
+                        <p class="col-3 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
+                        <p class="col-3 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
+                        <span class="col-2"></span>
                     </div>
                 </div>
             </form>
