@@ -88,6 +88,10 @@ table tbody tr td {
   border-radius: 7px;
   background-color: var(--color-bg);
   max-width: 600px !important;
+}
 
+.icon-container {
+  width: 25px;
+  height: 25px;
 }
 </style>
