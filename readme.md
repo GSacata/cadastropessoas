@@ -2,7 +2,7 @@
 Este é um desafio que consiste em construir um sistema SPA responsivo de visualização e cadastro de pessoas físicas e jurídicas.
 
 ## Informações
-Nome: Gabriel Sacata Aranda
+Nome: Gabriel Sacata Aranda \
 Versão: 1.0.0 (2025-08-20)
 
 ## Tecnologias
@@ -40,5 +40,5 @@ Database: H2 (In-Memory)
 3. Pelo banco ser "in-memory", cada vez que interromper os serviços do backend, o mesmo será apagado.
 
 ## Créditos
-Fonte: "Figtree" por Erik Kennedy, https://fonts.google.com/specimen/Figtree?query=figtree
+Fonte: "Figtree" por Erik Kennedy, https://fonts.google.com/specimen/Figtree?query=figtree \
 Ícones: Google Icons, https://fonts.google.com/icons
