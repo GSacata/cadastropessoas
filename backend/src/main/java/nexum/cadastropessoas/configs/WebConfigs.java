@@ -15,7 +15,11 @@ public class WebConfigs {
     CorsFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowCredentials(true);
-        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:5173/"));
+        corsConfig.setAllowedOrigins(Arrays.asList(
+            "http://localhost:6060/",  // dev port
+            "http://localhost:7070/"  // preview port
+
+        ));
         corsConfig.setAllowedHeaders(Arrays.asList(
             "Authorization", "Cache-Control", "Content-Type", "X-Requested-With", "Accept", "Origin"
         ));
