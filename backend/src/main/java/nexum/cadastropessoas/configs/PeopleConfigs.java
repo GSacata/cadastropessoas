@@ -12,9 +12,4 @@ public class PeopleConfigs {
     PeopleDAO peopleDAO() {
         return new PeopleDAO();
     }
-
-    // @Bean
-    // CountriesDAO countriesDAO() {
-    //     return new CountriesDAO();
-    // }
 }
