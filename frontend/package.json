@@ -7,9 +7,9 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 6060",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --port 7070"
   },
   "dependencies": {
     "bootstrap": "^5.3.7",
