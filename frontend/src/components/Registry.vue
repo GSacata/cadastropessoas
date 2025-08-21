@@ -4,26 +4,29 @@
     <div class="c-show-on-small" style="display: none;">
         <div class="container">
             <div class="col my-2 mx-2">
-                <label for="name" class="col-12 pl-0">Nome pequena</label>
-                <input type="text" placeholder="Nome" name="name" class="col-12 reg-name">
-                <label for="document" class="col-12">Documento</label>
-                <input type="text" placeholder="000.000.000-00" name="document" class="col-12 reg-doc">
-                <label for="phone" class="col-12">Telefone</label>
-                <input type="text" placeholder="(00) 0000-0000" name="phone" class="col-12 reg-phone">
-                <label for="email" class="col-12">E-Mail</label>
-                <input type="text" placeholder="seu@email.com" name="email" class="col-12 reg-email">
-                <div class="col-12 opacity-50 text-center">
-                    <small v-show="isEdit">Última atualização:
-                        <span class="reg-lastup"></span>
-                    </small>
-                </div>
-                <div class="mt-3">
-                    <p class="col-12 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
-                    <p class="col-12 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
-                    <p v-show="isEdit" class="col-12 mx-auto text-center btn-like btn-like-alert" @click="showModal(this.$route.params.uuid)">Deletar</p>
-                </div>
-            </div>
-            <div class="row my-2 mx-2">
+                <form>
+                    <div class="form-group">
+                        <label for="name" class="col-12 form-label">Nome</label>
+                        <input type="text" placeholder="Nome" name="name" class="col-12 mb-2 form-control reg-name">
+
+                        <label for="document" class="col-12 form-label">Documento</label>
+                        <input type="text" placeholder="000.000.000-00" name="document" class="col-12 mb-2 form-control reg-doc">
+
+                        <label for="phone" class="col-12 form-label">Telefone</label>
+                        <input type="text" placeholder="(00) 0000-0000" name="phone" class="col-12 mb-2 form-control reg-phone">
+
+                        <label for="email" class="col-12 form-label">E-Mail</label>
+                        <input type="text" placeholder="seu@email.com" name="email" class="col-12 mb-2 form-control reg-email">
+                        
+                        <label for="email" class="col-12 form-label">Última atualização</label>
+                        <input type="text" class="col-12 form-control reg-lastup" readonly>
+                    </div>
+                    <div class="form-group mt-3">
+                        <p class="col-12 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
+                        <p class="col-12 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
+                        <p v-show="isEdit" class="col-12 mx-auto text-center btn-like btn-like-alert" @click="showModal(this.$route.params.uuid)">Deletar</p>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -31,26 +34,47 @@
     <!-- Medium and large screens -->
     <div class="c-show-on-medium c-show-on-large" style="display: none;">
         <div class="container">
-            <div class="row my-2 mx-2">
-                <label for="name" class="col-12 pl-0">Nome grande</label>
-                <input type="text" placeholder="Nome" name="name" class="col-12 reg-name">
-            </div>
-            <div class="row my-2 mx-2">
-                <label for="document" class="col-4">Documento</label>
-                <label for="phone" class="col-4">Telefone</label>
-                <label for="email" class="col-4">E-Mail</label>
-                <input type="text" placeholder="000.000.000-00" name="document" class="col-4 reg-doc">
-                <input type="text" placeholder="(00) 0000-0000" name="phone" class="col-4 reg-phone">
-                <input type="text" placeholder="seu@email.com" name="email" class="col-4 reg-email">
-            </div>
-            <div class="row my-2 mx-2">
-                <div class="col-5 opacity-50">
-                    <small v-show="isEdit">Última atualização: <span class="reg-lastup"></span></small>
+            <form>
+                <div class="row my-2 mx-2 form-group">
+                    <div class="col-12 p-0">
+                        <label for="name" class="col-12 form-label">Nome</label>
+                        <input type="text" placeholder="Nome" name="name" class="col-12 form-control reg-name">
+                    </div>
                 </div>
-                <p class="col-2 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
-                <p class="col-2 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
-                <p v-show="isEdit" class="col-2 mx-auto text-center btn-like btn-like-alert" @click="showModal(this.$route.params.uuid)">Deletar</p>
-            </div>
+                <div class="row my-2 mx-2 form-group">
+                    <div class="col-4 p-0">
+                        <label for="document" class="form-label">Documento</label>
+                        <input type="text" placeholder="000.000.000-00" name="document" class="form-control reg-doc">
+                    </div>
+                    <div class="col-4 p-0">
+                        <label for="phone" class="form-label">Telefone</label>
+                        <input type="text" placeholder="(00) 0000-0000" name="phone" class="form-control reg-phone">
+                    </div>
+                    <div class="col-4 p-0">
+                        <label for="email" class="form-label">E-Mail</label>
+                        <input type="text" placeholder="seu@email.com" name="email" class="form-control reg-email">
+                    </div>
+                </div>
+                <div class="row my-2 mx-2 form-group">
+                    <div class="col-12 p-0">
+                        <label for="email" class="form-label">Última atualização</label>
+                        <input type="text" class="col-12 form-control reg-lastup" readonly>
+                    </div>
+                </div>
+                <div class="my-4 container form-group">
+                    <div v-if="isEdit" class="row mx-2">
+                        <p class="col-3 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
+                        <p class="col-3 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
+                        <p class="col-3 mx-auto text-center btn-like btn-like-alert" @click="showModal(this.$route.params.uuid)">Deletar</p>
+                    </div>
+                    <div v-else class="row mx-2">
+                        <span class="col-2"></span>
+                        <p class="col-3 mx-auto text-center btn-like btn-like-neutral" @click="navToList()">Voltar</p>
+                        <p class="col-3 mx-auto text-center btn-like btn-like-confirm" @click="saveRegistry()">Salvar</p>
+                        <span class="col-2"></span>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <DelModal v-show="isModalVisible" @close="hideModal" @delReg="deleteRegistry(toDeleteUuid)"></DelModal>
@@ -106,8 +130,8 @@ export default {
                     })
 
                     let lastUpdatedParags = document.querySelectorAll(".reg-lastup")
-                    lastUpdatedParags.forEach((parag) => {
-                        parag.innerHTML = this.person.lastUpdated
+                    lastUpdatedParags.forEach((field) => {
+                        field.value = this.person.lastUpdated
                     });
                     
                     this.isEdit = true

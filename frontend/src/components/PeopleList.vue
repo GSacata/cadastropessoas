@@ -4,12 +4,12 @@
 
             <!-- Small screen -->
             <div class="c-show-on-small" style="display: none;">
-                <table class="w-100">
+                <table class="table table-striped w-100">
                     <thead>
                         <tr class="row">
-                            <td class="col-2 text-center">Ações</td>
-                            <td class="col-6 text-start">Nome pequena</td>
-                            <td class="col-4 text-end">Documento</td>
+                            <th class="col-2 text-center">Ações</th>
+                            <th class="col-6 text-start">Nome</th>
+                            <th class="col-4 text-end">Documento</th>
                         </tr>
                     </thead>
                     <tbody class="container">
@@ -31,13 +31,13 @@
 
             <!-- Medium screen -->
             <div class="c-show-on-medium" style="display: none;">
-                <table class="w-100">
+                <table class="table table-striped w-100">
                     <thead>
                         <tr class="row">
-                            <td class="col-1 text-center">Ações</td>
-                            <td class="col-5 text-start">Nome média</td>
-                            <td class="col-3 text-end">Documento</td>
-                            <td class="col-3 text-end">E-Mail</td>
+                            <th class="col-1 text-center">Ações</th>
+                            <th class="col-5 text-start">Nome</th>
+                            <th class="col-3 text-end">Documento</th>
+                            <th class="col-3 text-end">E-Mail</th>
                         </tr>
                     </thead>
                     <tbody class="container">
@@ -60,14 +60,14 @@
 
             <!-- Large screen -->
             <div class="c-show-on-large" style="display: none;">
-                <table class="w-100">
+                <table class="table table-striped w-100">
                     <thead>
                         <tr class="row">
-                            <td class="col-1 text-center">Ações</td>
-                            <td class="col-5 text-start">Nome grande</td>
-                            <td class="col-2 text-end">Documento</td>
-                            <td class="col-2 text-end">E-Mail</td>
-                            <td class="col-2 text-end">Telefone</td>
+                            <th class="col-1 text-center">Ações</th>
+                            <th class="col-5 text-start">Nome</th>
+                            <th class="col-2 text-end">Documento</th>
+                            <th class="col-2 text-end">E-Mail</th>
+                            <th class="col-2 text-end">Telefone</th>
                         </tr>
                     </thead>
                     <tbody class="container">
@@ -93,7 +93,7 @@
             Nenhuma pessoa cadastrada.
         </div>
     </div>
-    <div container="row">
+    <div class="row">
         <p class="text-center my-3 mx-auto p-1 btn-like btn-like-neutral w-75" @click="navToRegistry()">Nova pessoa</p>
     </div>
     <DelModal v-show="isModalVisible" @close="hideModal" @delReg="deleteRegistry(toDeleteUuid)"></DelModal>

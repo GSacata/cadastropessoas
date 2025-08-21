@@ -32,9 +32,9 @@ body {
   max-width: 1000px;
 }
 
-table thead tr td {
-  background-color: var(--color-primary-darker);
-  color: var(--color-font-alt);
+table thead tr th {
+  background-color: var(--color-primary-darker) !important;
+  color: var(--color-font-alt) !important;
   overflow: hidden;
   text-wrap: nowrap;
 }
