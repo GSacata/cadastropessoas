@@ -1,8 +1,11 @@
-<script setup></script>
+<script setup>
+import Footer from './components/Footer.vue';
+</script>
 
 <template>
   <h1 class="text-center pt-2 pb-4">Cadastro de Pessoas</h1>
   <router-view />
+  <Footer></Footer>
 </template>
 
 <style>
