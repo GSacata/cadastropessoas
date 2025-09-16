@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import nexum.cadastropessoas.domain.People;
 import nexum.cadastropessoas.interfaces.PeopleInterfaces;
+import nexum.cadastropessoas.services.PeopleServices;
 import nexum.cadastropessoas.utils.PeopleUtils;
 
 public class PeopleDAO {
@@ -25,56 +26,10 @@ public class PeopleDAO {
         }
 
         public People createPerson(People body) {
-            String pName = body.getName();
-            String pDoc = body.getDocument();
-            String pPhone = body.getPhone();
-            String pEmail = body.getEmail();
+            People validPerson = PeopleServices.validatePersonForSave(body);
 
-            Boolean validDoc = false;
-
-            String cleanDoc = PeopleUtils.onlyDigits(pDoc);
-            if (cleanDoc.length() == 11) {
-                validDoc = PeopleUtils.CPFValidator(pDoc);
-            } else if (cleanDoc.length() == 14) {
-                validDoc = PeopleUtils.CNPJValidator(pDoc);
-            } else {
-                throw new IllegalArgumentException("Invalid length for document");
-            }
-
-            People person = new People();
-            person.setName(pName);
-
-            if (validDoc) {
-                person.setDocument(pDoc);;
-            } else {
-                throw new IllegalArgumentException("Invalid document");
-            }
-            
-            if (Objects.nonNull(pPhone) && pPhone.length() > 0) {
-                Boolean validPhone = PeopleUtils.PhoneValidator(pPhone);
-                if (validPhone) {
-                    person.setPhone(pPhone);
-                } else {
-                    throw new IllegalArgumentException("Invalid phone number");
-                }
-            }
-
-            if (Objects.nonNull(pEmail) && pEmail.length() > 0) {
-                Boolean validEmail = PeopleUtils.EmailValidator(pEmail);
-
-                if (validEmail) {
-                    person.setEmail(pEmail);
-                } else {
-                    throw new IllegalArgumentException("Invalid email address");
-                }
-            }
-            
-            Instant now = Instant.now();
-            person.setCreated(now);
-            person.setLastUpdated(now);
-
-            peopleInterfaces.save(person);
-            return person;
+            peopleInterfaces.save(validPerson);
+            return validPerson;
         }
 
         public People editPerson(UUID uuid, People body) {
