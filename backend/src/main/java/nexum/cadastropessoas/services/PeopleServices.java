@@ -64,4 +64,53 @@ public class PeopleServices {
 
         return person;
     }
+
+    public static People validatePersonForEdit(People existentPersonBody, People newPersonBody) {
+        existentPersonBody.setName(newPersonBody.getName());
+
+        String pDoc = newPersonBody.getDocument();
+        if (pDoc.length() > 0) {
+            Boolean validDoc = false;
+            
+            String cleanDoc = PeopleUtils.onlyDigits(pDoc);
+            if (cleanDoc.length() == 11) {
+                validDoc = PeopleUtils.CPFValidator(pDoc);
+            } else if (cleanDoc.length() == 14) {
+                validDoc = PeopleUtils.CNPJValidator(pDoc);
+            } else {
+                throw new IllegalArgumentException("Invalid length for document");
+            }
+
+            if (validDoc) {
+                existentPersonBody.setDocument(pDoc);;
+            } else {
+                throw new IllegalArgumentException("Invalid document");
+            }
+        }
+
+        String pPhone = newPersonBody.getPhone();
+        if (Objects.nonNull(pPhone) && pPhone.length() > 0) {
+            Boolean validPhone = PeopleUtils.PhoneValidator(pPhone);
+            if (validPhone) {
+                existentPersonBody.setPhone(pPhone);
+            } else {
+                throw new IllegalArgumentException("Invalid phone number");
+            }
+        }
+
+        String pEmail = newPersonBody.getEmail();
+        if (Objects.nonNull(pEmail) && pEmail.length() > 0) {
+            Boolean validEmail = PeopleUtils.EmailValidator(pEmail);
+
+            if (validEmail) {
+                existentPersonBody.setEmail(pEmail);
+            } else {
+                throw new IllegalArgumentException("Invalid email address");
+            }
+        }
+
+        existentPersonBody.setLastUpdated(Instant.now());
+
+        return existentPersonBody;
+    }
 }

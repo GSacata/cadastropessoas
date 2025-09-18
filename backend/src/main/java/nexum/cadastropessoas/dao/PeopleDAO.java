@@ -33,52 +33,8 @@ public class PeopleDAO {
         }
 
         public People editPerson(UUID uuid, People body) {
-            People toUpdate = peopleInterfaces.findById(uuid).get();
-
-            toUpdate.setName(body.getName());
-
-            String pDoc = body.getDocument();
-            if (pDoc.length() > 0) {
-                Boolean validDoc = false;
-                
-                String cleanDoc = PeopleUtils.onlyDigits(pDoc);
-                if (cleanDoc.length() == 11) {
-                    validDoc = PeopleUtils.CPFValidator(pDoc);
-                } else if (cleanDoc.length() == 14) {
-                    validDoc = PeopleUtils.CNPJValidator(pDoc);
-                } else {
-                    throw new IllegalArgumentException("Invalid length for document");
-                }
-
-                if (validDoc) {
-                    toUpdate.setDocument(pDoc);;
-                } else {
-                    throw new IllegalArgumentException("Invalid document");
-                }
-            }
-
-            String pPhone = body.getPhone();
-            if (Objects.nonNull(pPhone) && pPhone.length() > 0) {
-                Boolean validPhone = PeopleUtils.PhoneValidator(pPhone);
-                if (validPhone) {
-                    toUpdate.setPhone(pPhone);
-                } else {
-                    throw new IllegalArgumentException("Invalid phone number");
-                }
-            }
-
-            String pEmail = body.getEmail();
-            if (Objects.nonNull(pEmail) && pEmail.length() > 0) {
-                Boolean validEmail = PeopleUtils.EmailValidator(pEmail);
-
-                if (validEmail) {
-                    toUpdate.setEmail(pEmail);
-                } else {
-                    throw new IllegalArgumentException("Invalid email address");
-                }
-            }
-
-            toUpdate.setLastUpdated(Instant.now());
+            People existPerson = peopleInterfaces.findById(uuid).get();
+            People toUpdate = PeopleServices.validatePersonForEdit(existPerson, body);
 
             peopleInterfaces.save(toUpdate);
             return toUpdate;
